@@ -2,6 +2,8 @@ import { defineConfig } from "vite";
 import react, { reactCompilerPreset } from "@vitejs/plugin-react";
 import babel from "@rolldown/plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
+// import daisyui from "daisyui";
+// import tailwindConfig from "./tailwind.config.cjs";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -10,7 +12,6 @@ export default defineConfig({
     tailwindcss(),
     require("@tailwindcss/typography"),
     require("daisyui"),
-
     babel({ presets: [reactCompilerPreset()] }),
   ],
 });

@@ -1,5 +1,4 @@
 export { default as About } from "./About";
-import { Register } from "./../../node_modules/@tanstack/query-core/src/types";
 export { default as Cart } from "./Cart";
 export { default as HomeLayout } from "./HomeLayout";
 export { default as Checkout } from "./Checkout";
@@ -9,3 +8,4 @@ export { default as Products } from "./Products";
 export { default as Register } from "./Register";
 export { default as SingleProduct } from "./SingleProduct";
 export { default as Login } from "./Login";
+export { default as Error } from "./Error";
