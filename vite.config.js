@@ -10,8 +10,6 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    require("@tailwindcss/typography"),
-    require("daisyui"),
     babel({ presets: [reactCompilerPreset()] }),
   ],
 });
