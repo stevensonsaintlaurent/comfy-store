@@ -9,10 +9,10 @@ import daisyui from "daisyui";
 export default defineConfig({
   plugins: [
     react(),
-    // tailwindcss(),
+    tailwindcss(),
     // babel({ presets: [reactCompilerPreset()] }),
-    require("daisyui"),
-    require("@tailwindcss/typography"),
+    // require("daisyui"),
+    // require("@tailwindcss/typography"),
   ],
   daisyui: {
     themes: ["winter", "dracula"],
