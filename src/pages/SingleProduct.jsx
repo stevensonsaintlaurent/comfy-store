@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import { formatPrice, custonFetch } from "../utils";
+import { formatPrice, custonFetch, generateAmountOptions } from "../utils";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import Products from "./Products";
@@ -89,9 +89,7 @@ const SingleProduct = () => {
               value={amount}
               onChange={handleAmount}
             >
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
+              {generateAmountOptions(20)}
             </select>
           </div>
           {/* Card btn  */}
@@ -101,7 +99,6 @@ const SingleProduct = () => {
               className="btn btn-secondary btn-md"
               onClick={console.log("add to bag")}
             >
-              {" "}
               Add to bag
             </button>
           </div>
