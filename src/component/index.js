@@ -1,3 +1,5 @@
+export { default as CartItemsList } from "./CartItemsList";
+export { default as CartTotals } from "./CartTotals";
 export { default as FormInput } from "./FormInput";
 export { default as SubmitBtn } from "./SubmitBtn";
 export { default as Header } from "./Header";
