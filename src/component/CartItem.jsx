@@ -1,11 +1,24 @@
 import React from "react";
 import { formatPrice } from "../utils";
 import { generateAmountOptions } from "./../utils/index";
+import { useDispatch } from "react-redux";
+import { removeItem, editItem } from "../feature/cart/cartSlice";
 
 const CartItem = ({ cartItem }) => {
-  console.log("cartItem", cartItem);
   const { cartID, title, price, image, amount, company, productColor } =
     cartItem;
+
+  const dispath = useDispatch();
+  // ==================== Remove Item ======================
+  const removeItemFromTheCart = () => {
+    dispath(removeItem({ cartID }));
+  };
+
+  // ==================== Handle Amount =====================
+  const handleAmount = (e) => {
+    dispath(editItem({ cartID, amount: parseInt(e.target.value) }));
+  };
+
   return (
     <article
       key={cartID}
@@ -30,7 +43,11 @@ const CartItem = ({ cartItem }) => {
         </h4>
         {/* color */}
         <p className="mt-4 text-sm capitalize flex items-center gap-x-2">
-          color: <span className="badge badge-sm">{productColor}</span>
+          color:{" "}
+          <span
+            className="badge badge-sm"
+            style={{ backgroundColor: productColor }}
+          ></span>
         </p>
       </div>
       <div className="sm:ml-24 ">
@@ -40,7 +57,9 @@ const CartItem = ({ cartItem }) => {
             <span className="label-text">Amount</span>
             <select
               name="amount"
-              id="amount "
+              id="amount"
+              value={amount}
+              onChange={handleAmount}
               className="mt-2 select select-base select-bordered select-xs"
             >
               {generateAmountOptions(amount + 3)}
@@ -49,8 +68,10 @@ const CartItem = ({ cartItem }) => {
         </div>
 
         {/* remove */}
-        <button className="mt-2 link link-primary link-hover text-sm ">
-          {" "}
+        <button
+          className="mt-2 link link-primary link-hover text-sm "
+          onClick={removeItemFromTheCart}
+        >
           remove
         </button>
       </div>
