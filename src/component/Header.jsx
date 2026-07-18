@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logoutUser } from "../feature/user/userSlice";
 import { clearCart } from "../feature/cart/cartSlice";
+
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ const Header = () => {
   const handleLogout = () => {
     navigate("/");
     dispatch(clearCart());
-    dispatch(loggoutUser());
+    dispatch(logoutUser());
   };
   return (
     <header className="bg-neutral py-2 text-neutral-content">
