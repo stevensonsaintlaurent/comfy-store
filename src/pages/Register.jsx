@@ -12,7 +12,7 @@ export const action = async ({ request }) => {
   try {
     const response = await custonFetch.post("/auth/local/register", data);
     toast.success("account created successfully");
-    return redirect("/");
+    return redirect("/login");
   } catch (error) {
     const errorMessage =
       error?.response?.data?.error?.message ||

@@ -1,13 +1,36 @@
 import React from "react";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, redirect } from "react-router-dom";
 import { FormInput } from "./../component";
 import SubmitBtn from "../component/SubmitBtn";
+import { toast } from "react-toastify";
+import { custonFetch } from "../utils";
+import { loginUser } from "../feature/user/userSlice";
+
+export const action =
+  (store) =>
+  async ({ request }) => {
+    const formData = await request.formData();
+    const data = Object.fromEntries(formData);
+
+    try {
+      const response = await custonFetch.post("/auth/local", data);
+      toast.success("Logged in  successfully");
+      store.dispatch(loginUser(response.data));
+      return redirect("/");
+    } catch (error) {
+      const errorMessage =
+        error?.response?.data?.error?.message ||
+        "please double check you credentieals";
+      toast.error(errorMessage);
+      return null;
+    }
+  };
 
 const Login = () => {
   return (
     <section className="h-screen grid place-items-center">
       <Form
-        method="post"
+        method="POST"
         className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4"
       >
         <h4 className="text-center text-3xl font-bold">Login</h4>
