@@ -1,5 +1,31 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { CartTotals, CheckoutForm, SectionTitle } from "../component";
+import { toast } from "react-toastify";
+import { redirect } from "react-router-dom";
+
+export const loader = (store) => () => {
+  const user = store.getState().userState.user;
+  if (!user) {
+    toast.warn("You must be logged in to checkout");
+    return redirect("/login");
+  }
+  return null;
+};
 
 export default function Checkout() {
-  return <div>checkout</div>;
+  const cartTotal = useSelector((state) => state.cartState.cartTotals);
+  console.log("checkout ", cartTotal);
+
+  if (cartTotal === 0) {
+    return <SectionTitle text="Your cart is empty" />;
+  }
+  return (
+    <>
+      <div className="mt-8 grid gap-8 md:grid-cols-2 items-start">
+        <CheckoutForm />
+        <CartTotals />
+      </div>
+    </>
+  );
 }

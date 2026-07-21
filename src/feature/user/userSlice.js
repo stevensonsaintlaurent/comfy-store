@@ -13,8 +13,6 @@ const getUserFromLocalStorage = () => {
 const getThemeFromLocalStorage = () => {
   const theme = localStorage.getItem("theme") || themes.winter;
   document.documentElement.setAttribute("data-theme", theme);
-
-  console.log("from getThemeFromLocalStorage:", theme);
   return theme;
 };
 
