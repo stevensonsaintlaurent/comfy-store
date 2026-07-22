@@ -1,7 +1,10 @@
 import React from "react";
-import { redirect } from "react-router-dom";
+import { redirect, useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
 import { custonFetch } from "../utils";
+import SectionTitle from "./../component/SectionTitle";
+import OrdersList from "./../component/OrdersList";
+import PaginationContainer from "./../component/PaginationContainer";
 
 export const loader =
   (store) =>
@@ -38,6 +41,17 @@ export const loader =
   };
 
 const Orders = () => {
+  const { meta } = useLoaderData();
+  if (meta.pagination.total < 1) {
+    return <SectionTitle text="please make an order " />;
+  }
+  return (
+    <>
+      <SectionTitle text="Your Orders" />
+      <OrdersList />
+      <PaginationContainer />
+    </>
+  );
   return <div>orders</div>;
 };
 
