@@ -5,8 +5,13 @@ import { custonFetch } from "./../utils/index";
 
 const url = "/products?featured=true";
 
-export const loader = async () => {
-  const response = await custonFetch(url);
+const featuedProductsQuery = {
+  queryKey: ["featuredProducts"],
+  queryKey: () => custonFetch(url),
+};
+
+export const loader = (queryClient) => async () => {
+  const response = await queryClient.ensureQueryData(featuedProductsQuery);
   const products = response.data.data;
 
   return { products };
