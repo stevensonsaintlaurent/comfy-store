@@ -7,7 +7,7 @@ const url = "/products?featured=true";
 
 const featuedProductsQuery = {
   queryKey: ["featuredProducts"],
-  queryKey: () => custonFetch(url),
+  queryFn: () => custonFetch(url),
 };
 
 export const loader = (queryClient) => async () => {

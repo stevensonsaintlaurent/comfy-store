@@ -6,8 +6,24 @@ import SectionTitle from "./../component/SectionTitle";
 import OrdersList from "./../component/OrdersList";
 import { ComplexPaginationContainer } from "../component";
 
+const ordersQuery = (params, user) => {
+  return {
+    queryKey: [
+      "orders",
+      user.username,
+      params.page ? parseInt(params.page) : 1,
+    ],
+    queryFn: () =>
+      custonFetch.get("orders", {
+        params,
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }),
+  };
+};
 export const loader =
-  (store) =>
+  (store, queryClient) =>
   async ({ request }) => {
     const user = store.getState().userState.user;
 
@@ -21,12 +37,9 @@ export const loader =
       ...new URL(request.url).searchParams.entries(),
     ]);
     try {
-      const response = await custonFetch.get("orders", {
-        params,
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const response = await QueryClient.ensureQueryData(
+        ordersQuery(params, user),
+      );
 
       return { orders: response.data.data, meta: response.data.meta };
     } catch (error) {
