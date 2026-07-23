@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { custonFetch } from "../utils";
 import SectionTitle from "./../component/SectionTitle";
 import OrdersList from "./../component/OrdersList";
-import PaginationContainer from "./../component/PaginationContainer";
+import { ComplexPaginationContainer } from "../component";
 
 export const loader =
   (store) =>
@@ -49,7 +49,7 @@ const Orders = () => {
     <>
       <SectionTitle text="Your Orders" />
       <OrdersList />
-      <PaginationContainer />
+      <ComplexPaginationContainer />
     </>
   );
   return <div>orders</div>;

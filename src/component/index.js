@@ -17,3 +17,4 @@ export { default as FormRange } from "./FormRange";
 export { default as Loading } from "./Loading";
 export { default as CheckoutForm } from "./CheckoutForm";
 export { default as OrdersList } from "./OrdersList";
+export { default as ComplexPaginationContainer } from "./ComplexPaginationContainer";
